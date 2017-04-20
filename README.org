@@ -1,7 +1,35 @@
-#+TITLE: HUFS 학점 플래너!!
-#+OPTIONS: toc:nil
+#+TITLE:  HUFS Course 2 JSON
 #+STARTUP: indent
 
-Onedrive 링크: https://1drv.ms/f/s!AmKFhFhb4Knr81jbJS0ExRKA8_W5
+** HUFS Course 2 JSON이란?
+한국외국어대학교 [[http://webs.hufs.ac.kr:8989/src08/jsp/lecture/LECTURE2020L.jsp][강의시간표 웹 페이지]]의 데이터를 JSON 형식으로 바꾸어주는 프로그램입니다.
 
 
+** 상태
+*** Working
+**** 학부
+***** 서울캠퍼스
+- 2005-1학기 ~ 2016-겨울
+*** Not Working
+*** Untested
+**** 학부
+***** 서울캠퍼스
+- ~ 2004-겨울
+- 2017-1학기
+***** 글로벌캠퍼스
+- 전부
+**** 대학원
+- 전부
+
+** 사용법
+standalone executable로 사용
+자바 라이브러리로 사용
+
+** 라이선스
+GNU GPL v3
+
+** 크롤링에 대하여
+# - 크롤링된 파일은 여기에서 받을 수 있습니다. zip파일 안의 내용물의 저작권은 한국외국어대학교에 있으며, 본 소프트웨어와는 무관함을 알립니다.
+크롤링은 서버에 큰 부담을 주는 행위로, 비록 본 소프트웨어로 학교 강의자료를 크롤링 할 수는 있지만 그러지 않는 것을 권장합니다. 
+
+이미 크롤링된 자료를 받아서 사용하시는 것을 권장합니다. 업로드 예정.
