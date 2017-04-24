@@ -12,3 +12,6 @@ libraryDependencies ++= Seq(
 		"com.typesafe.play" %% "play-json" % "2.6.0-M6",
 		"org.joda" % "joda-convert" % "1.8.1"
 	)
+
+publishTo := Some("Artifactory Realm" at "https://repo.lambda.fun/artifactory/sbt-dev-local/")
+credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")

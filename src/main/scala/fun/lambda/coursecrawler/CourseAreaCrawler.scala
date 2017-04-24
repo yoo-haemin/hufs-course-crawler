@@ -53,12 +53,12 @@ object CourseAreaCrawler {
       case t: Some[(Array[Seq[String]], Array[Seq[String]])] => Some((t.get._1.map { mj =>
         Major(mj(1), mj(2), mj(0),
           Course.fromSchoolCourseBody(
-            Http(coursePageUrl).postForm.params(params + ("gubun" -> "1") + ("ag_crs_strct_cd" -> mj(0))).asString.body
+            Http(coursePageUrl).postForm.params(params + ("gubun" -> "1") + ("ag_crs_strct_cd" -> mj(0))).timeout(connTimeoutMs = 1000, readTimeoutMs = 50000000).asString.body
           ))
         }.toArray) -> (t.get._2.map { la =>
         LiberalArts(la(1), la(0),
           Course.fromSchoolCourseBody(
-            Http(coursePageUrl).postForm.params(params + ("gubun" -> "2") + ("ag_compt_fld_cd" -> la(0))).asString.body
+            Http(coursePageUrl).postForm.params(params + ("gubun" -> "2") + ("ag_compt_fld_cd" -> la(0))).timeout(connTimeoutMs = 1000, readTimeoutMs = 500000000).asString.body
           ))
         }.toArray))
       case _ => None
