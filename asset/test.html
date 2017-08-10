@@ -1,0 +1,1241 @@
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>강의시간표</title>
+<meta http-equiv="imagetoolbar" content="no">
+<meta http-equiv="Pragma" content="no-cache"> 
+<meta http-equiv="Expires" content="0"> 
+<meta http-equiv="Cache-Control" content="no-cache"> 
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link href="/src08/css/css.css" rel="stylesheet" type="text/css">
+
+
+
+<script language="javascript" src="/src08/js/common.js"></script>
+<script language="javascript">
+		function popupWindow(){
+			var printwin=window.open('/jsp/HUFS/stu1/english_help.html','','toolbar=no,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=1,width=850,height=600');
+
+		}
+
+
+		function lecture_open(ag_1,ag_2,ag_3,ag_4){
+	/*		var printwin=window.open("/jsp/HUFS/stu1/stu1_c0_a0_d3.jsp?mode=print&ledg_year="+ag_1+"&ledg_sessn="+ag_2+"&org_sect="+ag_3+"&lssn_cd="+ag_4,
+							'print','toolbar=yes,location=0,directories=0,status=0,menubar=1,scrollbars=1,resizable=1,width=750,height=700');*/
+			var printwin=window.open("/src08/jsp/lecture/syllabus.jsp?mode=print&ledg_year="+ag_1+"&ledg_sessn="+ag_2+"&org_sect="+ag_3+"&lssn_cd="+ag_4,
+							'print','toolbar=yes,location=0,directories=0,status=0,menubar=1,scrollbars=1,resizable=1,width=950,height=850');
+		}
+
+
+		function doSearch() {
+			document.form1.action = '/src08/jsp/lecture/LECTURE2020L.jsp';
+			document.form1.submit();
+		}
+
+
+		function org_change() {
+			if ( document.form1.ag_crs_strct_cd ) document.form1.ag_crs_strct_cd.value = "!_!";
+			if ( document.form1.ag_compt_fld_cd ) document.form1.ag_compt_fld_cd.value = "!_!";
+
+			var elmt = document.getElementById('premier1')
+			
+			elmt.style.visibility = "hidden";
+
+			doSearch();
+		}
+
+
+		function time_submit() {
+			var elmt = document.getElementById('premier1')
+			
+			elmt.style.visibility = "visible";
+			
+			doSearch();
+		}
+
+
+		function gubun_change(ag_gubun) {
+			if ( document.form1.ag_crs_strct_cd ) document.form1.ag_crs_strct_cd.value = "!_!";
+			if ( document.form1.ag_compt_fld_cd ) document.form1.ag_compt_fld_cd.value = "!_!";
+
+			if ( ag_gubun == "1" ) {
+				document.form1.ag_crs_strct_cd.style.visibility = "visible";
+				document.form1.ag_compt_fld_cd.style.visibility = "hidden";
+			} else {
+				document.form1.ag_crs_strct_cd.style.visibility = "hidden";
+				document.form1.ag_compt_fld_cd.style.visibility = "visible";
+			}
+
+			time_submit();
+		}
+
+</script>
+</head>
+
+<body onContextmenu="return false">
+<div class="content">
+	<h1>강의/수업정보(Class/Enrollment Management) ▶ 강의시간표(Class Schedule)</h1>
+
+    <form name="form1" method="post">
+    <input type="hidden" name="tab_lang" value="K">
+    <input type="hidden" name="type" value="">
+    <div class="table write margin_top30">
+    	<table>
+        <caption>강의시간표</caption>
+        <colgroup>
+            <col style="width:320px" />
+            <col style="width:" />
+        </colgroup>
+        <tbody>
+        <tr>
+            <th>년도/학기(Year/Semester)</th>
+            <td>
+            	<div class="selectBox">
+                    <select name="ag_ledg_year" onChange="time_submit()">
+                        
+                            <option value="2017" selected>&nbsp;2017&nbsp;</option>
+                        
+                            <option value="2016" >&nbsp;2016&nbsp;</option>
+                        
+                            <option value="2015" >&nbsp;2015&nbsp;</option>
+                        
+                            <option value="2014" >&nbsp;2014&nbsp;</option>
+                        
+                            <option value="2013" >&nbsp;2013&nbsp;</option>
+                        
+                            <option value="2012" >&nbsp;2012&nbsp;</option>
+                        
+                            <option value="2011" >&nbsp;2011&nbsp;</option>
+                        
+                            <option value="2010" >&nbsp;2010&nbsp;</option>
+                        
+                            <option value="2009" >&nbsp;2009&nbsp;</option>
+                        
+                            <option value="2008" >&nbsp;2008&nbsp;</option>
+                        
+                            <option value="2007" >&nbsp;2007&nbsp;</option>
+                        
+                            <option value="2006" >&nbsp;2006&nbsp;</option>
+                        
+                            <option value="2005" >&nbsp;2005&nbsp;</option>
+                        
+                            <option value="2004" >&nbsp;2004&nbsp;</option>
+                        
+                            <option value="2003" >&nbsp;2003&nbsp;</option>
+                        
+                            <option value="2002" >&nbsp;2002&nbsp;</option>
+                        
+                            <option value="2001" >&nbsp;2001&nbsp;</option>
+                        
+                            <option value="2000" >&nbsp;2000&nbsp;</option>
+                        
+                            <option value="1999" >&nbsp;1999&nbsp;</option>
+                        
+                    </select>
+                </div>    
+                <div class="selectBox">
+                    <select name="ag_ledg_sessn" onChange="time_submit()">
+                        <option value="1" >&nbsp;1st Semester&nbsp;</option>
+                        <option value="2" >&nbsp;Summer Session&nbsp;</option>
+                        <option value="3" selected>&nbsp;2nd Semester&nbsp;</option>
+                        <option value="4" >&nbsp;Winter Session&nbsp;</option>
+                    </select>
+                </div>
+        	</td>
+        </tr>
+        <tr>
+            <th>소속(Affiliation)</th>
+            <td>
+            	<div class="selectBox">
+                    <select name="ag_org_sect" onChange="org_change()">
+                    
+                        <option value="A" selected>
+                            &nbsp;학부&nbsp;(Undergraduate)&nbsp;</option>
+                    
+                        <option value="B" >
+                            &nbsp;대학원&nbsp;(Graduate School)&nbsp;</option>
+                    
+                        <option value="D" >
+                            &nbsp;통번역대학원&nbsp;(Graduate School of Interpretation and Translation)&nbsp;</option>
+                    
+                        <option value="E" >
+                            &nbsp;교육대학원&nbsp;(Graduate School of Education)&nbsp;</option>
+                    
+                        <option value="G" >
+                            &nbsp;정치행정언론대학원&nbsp;(Graduate School of Politics, Government, and Communication)&nbsp;</option>
+                    
+                        <option value="H" >
+                            &nbsp;국제지역대학원&nbsp;(Graduate School of International and Area Studies)&nbsp;</option>
+                    
+                        <option value="I" >
+                            &nbsp;경영대학원(주간)&nbsp;(Graduate School of Business)&nbsp;</option>
+                    
+                        <option value="J" >
+                            &nbsp;경영대학원(야간)&nbsp;(Graduate School of Business)&nbsp;</option>
+                    
+                        <option value="L" >
+                            &nbsp;법학전문대학원&nbsp;(Law School)&nbsp;</option>
+                    
+                        <option value="M" >
+                            &nbsp;TESOL대학원&nbsp;(Graduate School of TESOL)&nbsp;</option>
+                    
+                        <option value="T" >
+                            &nbsp;TESOL 전문교육원&nbsp;(TESOL Professional Education Center)&nbsp;</option>
+                    
+                        <option value="U" >
+                            &nbsp;외국어로서의 한국어&nbsp;(None)&nbsp;</option>
+                    
+                        <option value="V" >
+                            &nbsp;미정&nbsp;(None)&nbsp;</option>
+                    
+                        <option value="W" >
+                            &nbsp;미정&nbsp;(None)&nbsp;</option>
+                    
+                    </select>
+                </div>
+			</td>
+        </tr>
+        
+            <tr>
+                <th>캠퍼스(Campus)</th>
+                <td>
+                	<input name="campus_sect" type="radio"id="radio_1_3"  value="H1" onClick="org_change()" checked><label for="radio_1_3">서울(Seoul)</label>
+                    <input name="campus_sect" type="radio" id="radio_1_4" value="H2" onClick="org_change()" ><label for="radio_1_4">글로벌(Global)</label>
+				</td>
+            </tr>
+            <tr>
+                <th><input name="gubun" type="radio" value="1" id="radio_1_1" onClick="gubun_change(1)" checked checked><label for="radio_1_1">전공/부전공(Major/Minor)</label></th>
+                <td>
+					<div class="selectBox">
+                        <select name="ag_crs_strct_cd" style="visibility:visible" onChange="time_submit()" >
+                        
+                            <option value="AAR01_H1"
+                                 selected >
+                                &nbsp;(서울)&nbsp;-&nbsp;CORE글로벌지역학&nbsp;(CORE Global Studies)&nbsp;
+                            </option>
+                        
+                            <option value="A1CE1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;EICC학과&nbsp;(Department of English for International Conferences and Communication)&nbsp;
+                            </option>
+                        
+                            <option value="AAQ01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;EU전공&nbsp;(EU  Major)&nbsp;
+                            </option>
+                        
+                            <option value="AKAA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;Language & Diplomacy전공&nbsp;(Language & Diplomacy)&nbsp;
+                            </option>
+                        
+                            <option value="AKA_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;Language & Diplomacy학부&nbsp;(Division of Language & Diplomacy)&nbsp;
+                            </option>
+                        
+                            <option value="A2AA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;Language & Trade전공&nbsp;(Language & Trade)&nbsp;
+                            </option>
+                        
+                            <option value="A2A_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;Language & Trade학부&nbsp;(Division of Language & Trade)&nbsp;
+                            </option>
+                        
+                            <option value="ALA_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;경영학부&nbsp;(Business Administration Division)&nbsp;
+                            </option>
+                        
+                            <option value="ALAA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;경영학전공&nbsp;(Business Administration)&nbsp;
+                            </option>
+                        
+                            <option value="AEC_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;경제학부&nbsp;(Division of Economics)&nbsp;
+                            </option>
+                        
+                            <option value="AECA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;경제학전공&nbsp;(Economics)&nbsp;
+                            </option>
+                        
+                            <option value="ACDD1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;광고·PR·브랜딩전공&nbsp;(Advertising·Public Relations·Branding)&nbsp;
+                            </option>
+                        
+                            <option value="AFF01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;교육학&nbsp;(Education)&nbsp;
+                            </option>
+                        
+                            <option value="ACAI1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;국가리더전공&nbsp;(National Leader)&nbsp;
+                            </option>
+                        
+                            <option value="AEAA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;국제통상학과&nbsp;(Department of International  Economics and Law)&nbsp;
+                            </option>
+                        
+                            <option value="AGA_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;국제학부&nbsp;(Division of International Studies)&nbsp;
+                            </option>
+                        
+                            <option value="AGAA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;국제학전공&nbsp;(International Studies)&nbsp;
+                            </option>
+                        
+                            <option value="AAH01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;네덜란드어과&nbsp;(Department of Dutch)&nbsp;
+                            </option>
+                        
+                            <option value="AAD01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;노어과&nbsp;(Department of Russian)&nbsp;
+                            </option>
+                        
+                            <option value="AAC01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;독일어과&nbsp;(Department of German)&nbsp;
+                            </option>
+                        
+                            <option value="AFC01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;독일어교육과&nbsp;(Department of German Education)&nbsp;
+                            </option>
+                        
+                            <option value="ABP01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;동북아전공&nbsp;(North-East Asian Studies Major)&nbsp;
+                            </option>
+                        
+                            <option value="ANJA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;디지털인문한국학전공&nbsp;(Digital Korean Studies in Humanities)&nbsp;
+                            </option>
+                        
+                            <option value="ABC01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;말레이.인도네시아어과&nbsp;(Department of Malay-Indonesian)&nbsp;
+                            </option>
+                        
+                            <option value="ABJ01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;몽골어과&nbsp;(Department  of Mongolian)&nbsp;
+                            </option>
+                        
+                            <option value="ANDD2_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;문화콘텐츠학전공&nbsp;(Cultural Contents Major)&nbsp;
+                            </option>
+                        
+                            <option value="ACD_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;미디어커뮤니케이션학부&nbsp;(Division of Media & Communication)&nbsp;
+                            </option>
+                        
+                            <option value="ACDE1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;방송·영상·뉴미디어전공&nbsp;(Broadcasting·Film·New Media)&nbsp;
+                            </option>
+                        
+                            <option value="ADA01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;법학과&nbsp;(Department of Law)&nbsp;
+                            </option>
+                        
+                            <option value="ABF01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;베트남어과&nbsp;(Department of Vietnamese)&nbsp;
+                            </option>
+                        
+                            <option value="AAP01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;브릭스전공&nbsp;(BRICs Major)&nbsp;
+                            </option>
+                        
+                            <option value="ANDB2_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;사학과&nbsp;(Department of History)&nbsp;
+                            </option>
+                        
+                            <option value="AKAB1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;사회과학전공&nbsp;(Social Science)&nbsp;
+                            </option>
+                        
+                            <option value="AANA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;세계문화예술경영전공&nbsp;(Art and Cultural Mediation)&nbsp;
+                            </option>
+                        
+                            <option value="AAI01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;스칸디나비아어과&nbsp;(Department of Scandinavian Languages)&nbsp;
+                            </option>
+                        
+                            <option value="AAE01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;스페인어과&nbsp;(Department of Spanish)&nbsp;
+                            </option>
+                        
+                            <option value="ABD01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;아랍어과&nbsp;(Department of Arabic)&nbsp;
+                            </option>
+                        
+                            <option value="ACDA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;언론·정보전공&nbsp;(Journalism & Information)&nbsp;
+                            </option>
+                        
+                            <option value="A1CF1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;언어와공학전공&nbsp;(Language and Technology)&nbsp;
+                            </option>
+                        
+                            <option value="ANDC2_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;언어인지과학과&nbsp;(Department of Linguistics and Cognitive Science)&nbsp;
+                            </option>
+                        
+                            <option value="A1CD1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;영미문학·문화학과&nbsp;(Department of English Literature and Culture)&nbsp;
+                            </option>
+                        
+                            <option value="AFA01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;영어교육과&nbsp;(Department of English Education)&nbsp;
+                            </option>
+                        
+                            <option value="A1BD1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;영어전공&nbsp;(English Major)&nbsp;
+                            </option>
+                        
+                            <option value="A1CA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;영어학과&nbsp;(Department of English Linguistics)&nbsp;
+                            </option>
+                        
+                            <option value="AFH01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;외국어로서의한국어교육전공&nbsp;(Teaching Korean as a Foreign Language)&nbsp;
+                            </option>
+                        
+                            <option value="ATMB2_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;융복합소프트웨어전공&nbsp;(Software Convergence Major)&nbsp;
+                            </option>
+                        
+                            <option value="AJDA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;융합일본지역전공&nbsp;(Integrated Japanese Studies)&nbsp;
+                            </option>
+                        
+                            <option value="AJD_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;융합일본지역학부&nbsp;(Division of Integrated Japanese Studies)&nbsp;
+                            </option>
+                        
+                            <option value="ABI01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;이란어과&nbsp;(Department of Persian)&nbsp;
+                            </option>
+                        
+                            <option value="AAF01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;이탈리아어과&nbsp;(Department of Italian)&nbsp;
+                            </option>
+                        
+                            <option value="ABG01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;인도어과&nbsp;(Department of Hindi)&nbsp;
+                            </option>
+                        
+                            <option value="AJCA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;일본언어문화전공&nbsp;(Japanese Language, Literature and Culture)&nbsp;
+                            </option>
+                        
+                            <option value="AJC_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;일본언어문화학부&nbsp;(Division of Japanese Language, Literature and Culture)&nbsp;
+                            </option>
+                        
+                            <option value="ACBA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;정치외교학과&nbsp;(Department of Political Science and Diplomacy)&nbsp;
+                            </option>
+                        
+                            <option value="AFI01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;중국어교육과&nbsp;(Department of Chinese Education)&nbsp;
+                            </option>
+                        
+                            <option value="AICA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;중국언어문화전공&nbsp;(Chinese Language, Literature and Culture)&nbsp;
+                            </option>
+                        
+                            <option value="AIC_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;중국언어문화학부&nbsp;(Division of Chinese Language, Literature and Culture)&nbsp;
+                            </option>
+                        
+                            <option value="AIDA1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;중국외교통상전공&nbsp;(Chinese Foreign Affairs and Commerce)&nbsp;
+                            </option>
+                        
+                            <option value="AID_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;중국외교통상학부&nbsp;(Division of Chinese Foreign Affairs and Commerce)&nbsp;
+                            </option>
+                        
+                            <option value="ANDA2_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;철학과&nbsp;(Department of Philosophy)&nbsp;
+                            </option>
+                        
+                            <option value="ABE01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;태국어과&nbsp;(Department of Thai)&nbsp;
+                            </option>
+                        
+                            <option value="ABH11_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;터키.아제르바이잔어과&nbsp;(Department of Turkish and Azerbaijani)&nbsp;
+                            </option>
+                        
+                            <option value="AAK01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;포르투갈어과&nbsp;(Department of Portuguese)&nbsp;
+                            </option>
+                        
+                            <option value="AAB01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;프랑스어과&nbsp;(Department of French)&nbsp;
+                            </option>
+                        
+                            <option value="AFB01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;프랑스어교육과&nbsp;(Department of French Education)&nbsp;
+                            </option>
+                        
+                            <option value="AAM_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;프랑스어학부&nbsp;(Division of French Language)&nbsp;
+                            </option>
+                        
+                            <option value="AFD01_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;한국어교육과&nbsp;(Department of Korean Education)&nbsp;
+                            </option>
+                        
+                            <option value="ACBB1_H1"
+                                >
+                                &nbsp;(서울)&nbsp;-&nbsp;행정학과&nbsp;(Department of Public Administration)&nbsp;
+                            </option>
+                        
+                        </select>
+                	</div>
+                </td>
+            </tr>
+            <tr>
+                <th><input name="gubun" type="radio" value="2" id="radio_1_2" onClick="gubun_change(2)" ><label for="radio_1_2">실용외국어/교양과목</label><br>(Practical foreign language/Liberal arts)</th>
+                <td>
+                	<div class="selectBox">
+                        <select name="ag_compt_fld_cd" style="visibility:hidden" onChange="time_submit()">
+                        
+                            <option value ="301_H1"
+                                 selected >
+                                &nbsp;인문강좌(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="302_H1"
+                                >
+                                &nbsp;교양외국어(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="304_H1"
+                                >
+                                &nbsp;HUFS CAREER(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="320_H1"
+                                >
+                                &nbsp;학습포트폴리오(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="327_H1"
+                                >
+                                &nbsp;건강과레포츠(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="328_H1"
+                                >
+                                &nbsp;특별교양(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="32A_H1"
+                                >
+                                &nbsp;실용외국어(선택)(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="32V_H1"
+                                >
+                                &nbsp;외국인을 위한 한국학(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="32Z_H1"
+                                >
+                                &nbsp;공동교양(한예종)(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="330_H1"
+                                >
+                                &nbsp;언어와문학(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="331_H1"
+                                >
+                                &nbsp;문화와예술(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="332_H1"
+                                >
+                                &nbsp;역사와철학(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="333_H1"
+                                >
+                                &nbsp;국가와사회(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="334_H1"
+                                >
+                                &nbsp;과학과기술(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="335_H1"
+                                >
+                                &nbsp;핵심인문기초(서울)&nbsp;
+                            </option>
+                        
+                            <option value ="61_H1"
+                                >
+                                &nbsp;군사학(서울)&nbsp;
+                            </option>
+                        
+                        </select>
+                	</div>
+                </td>
+            </tr>
+        
+        </tbody>    
+    	</table>
+    </div>
+    
+    
+    <div class="btn_area">
+    	<button type="button" class="blue" name="btnSearch" onClick="javascript:time_submit();">조회(Search)</button></button>
+    </div>
+    
+    
+    
+    
+        
+			<div class="box guide align_center margin_top30">
+				강의실은 수강신청 인원에 의해 배정되오니  2017년 8월 18일 후 확인하시기 바랍니다.
+			</div>
+        
+    
+    
+    <!-- 
+     
+    -->
+    
+    <div id="premier1" style="visibility: visible;;" class="margin_top30">	
+        <p class="box">Syllabus : 강의계획서 / <img src="/src08/images/common/ico_check.gif"> 전필(R) : Major Requirement / <img src="/src08/images/common/ico_check4.gif"> 원어(F) : Taught in Foreign Language / 
+        <img src="/src08/images/common/ico_check2.gif"> <span style="margin-right:10px;">온라인(O) : Online Course</span> <button type="button" class="white"  onClick="javascript:popupWindow()">Class Period &amp; Room</button></p>
+        
+        <div class="table write margin_top10 align_center font-size11">
+            <table>
+            <caption>강의시간표</caption>
+            <!--대학원-->
+            <colgroup>
+                <col style="width:4%" />
+                <col style="width:7%" />
+                <col style="width:4%" />
+                <col style="width:7.5%" />
+                <col style="width:14%" />
+                <col style="width:6.5%" />
+                <col style="width:4.5%" />
+                <col style="width:4.5%" />
+                <col style="width:4.5%" />
+                <col style="width:4.5%" />
+                <col style="width:7%" />
+                <col style="width:4%" />
+                <col style="width:4%" />
+                <col style="width:8%" />
+                <col style="width:7%" />
+                <col style="width:9%" />
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>No.</th>
+                <th>개설영역<br>(Area)</th>
+                <th>학년<br>(Year)</th>
+                <th>학수번호<br>(Course <br>number)</th>
+                <th>교과목명<br>(Subject <br>name)</th>
+                <th>Syllabus</th>
+                <th>전필<br>(R)<br><img src="/src08/images/common/ico_check.gif"></th>
+                <th>온라인<br>(O)<br><img src="/src08/images/common/ico_check2.gif"></th>
+                <th>원어<br>(F)<br><img src="/src08/images/common/ico_check4.gif"></th>
+                <th>Team<br>Teaching<br><img src="/src08/images/common/ico_check5.gif"></th>
+                <th>담당교수<br>(Professor)</th>
+                <th>학점<br>(Credit)</th>
+                <th>시간<br>(Time)</th>
+                <th>강의시간/강의실<br>(Class time/<br>Lecture room)</th>
+                <th>신청/제한인원<br>(Apply/<br>Restricted<br>number of people)</th>
+                <th>비고<br>(Note)</th>
+            </tr>
+            
+                	
+                <tr>
+                    <td>1</td>
+                    
+                        <td>인문학공통</td>
+                    
+                    <td>1</td>
+                    <td>J11023101</td>
+                    <td class="align_left">
+                        
+                            <!-- onClick="javascript:go_syllabus('2017','3','A','J11023101')" -->
+                            <div 
+                                    onClick="javascript:lecture_open('2017','3','A','J11023101')"
+                                 >
+                                <font class="txt_navy">글로벌한국학(2)<br>
+                                <font class='txt_gray8'>(Introduction to Korean Studies in a Global Era (2))
+                            </div>
+                        
+					</td>
+                    <td>
+                            
+                                <a href="javascript:lecture_open('2017','3','A','J11023101')">
+                                <img src="/src08/images/common/ico_file.gif" border="0"></a>
+                            
+                        
+                        </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>이요한
+                        
+                            <br>(-)
+                        </td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>월 7 8  (-)<br>(Mon 7 8  (-))</td>
+                    <td>0&nbsp;/&nbsp;50</td>
+                    <td class="align_left">인도.동남아지역<br>
+                        
+                            <font class="txt_navy">
+                        </td>
+                </tr>
+            
+                	
+                <tr>
+                    <td>2</td>
+                    
+                        <td>인문학공통</td>
+                    
+                    <td>1</td>
+                    <td>J11019101</td>
+                    <td class="align_left">
+                        
+                            <!-- onClick="javascript:go_syllabus('2017','3','A','J11019101')" -->
+                            <div >
+                                <font class="txt_navy">러시아.투르크.몽골의 사상과 문화<br>
+                                <font class='txt_gray8'>(Russian, Turkic, Mongolian Thoughts and Cultures)
+                            </div>
+                        
+					</td>
+                    <td>
+                            
+                        
+                        </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        
+                            <br>(-)
+                        </td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>월 7 8  (-)<br>(Mon 7 8  (-))</td>
+                    <td>0&nbsp;/&nbsp;50</td>
+                    <td class="align_left">러시아.중앙아시아지역<br>
+                        
+                            <font class="txt_navy">
+                        </td>
+                </tr>
+            
+                	
+                <tr>
+                    <td>3</td>
+                    
+                        <td>인문학공통</td>
+                    
+                    <td>1</td>
+                    <td>J11004101</td>
+                    <td class="align_left">
+                        
+                            <!-- onClick="javascript:go_syllabus('2017','3','A','J11004101')" -->
+                            <div >
+                                <font class="txt_navy">러시아.투르크.몽골의민족과종교<br>
+                                <font class='txt_gray8'>(Russian, Turkic, Mongolian Peoples and their Religions)
+                            </div>
+                        
+					</td>
+                    <td>
+                            
+                        
+                        </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>오종진
+                        
+                            <br>(Chong Jin OH)
+                        </td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>목 5 6  (-)<br>(Thu 5 6  (-))</td>
+                    <td>0&nbsp;/&nbsp;50</td>
+                    <td class="align_left">러시아.중앙아시아지역<br>
+                        
+                            <font class="txt_navy">
+                        </td>
+                </tr>
+            
+                	
+                <tr>
+                    <td>4</td>
+                    
+                        <td>인문학공통</td>
+                    
+                    <td>1</td>
+                    <td>J11015201</td>
+                    <td class="align_left">
+                        
+                            <!-- onClick="javascript:go_syllabus('2017','3','A','J11015201')" -->
+                            <div >
+                                <font class="txt_navy">유럽지성의이해<br>
+                                <font class='txt_gray8'>(Understanding Intelligence and Intellectuals of Europe)
+                            </div>
+                        
+					</td>
+                    <td>
+                            
+                        
+                        </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        
+                            <br>(-)
+                        </td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>목 3 4  (-)<br>(Thu 3 4  (-))</td>
+                    <td>0&nbsp;/&nbsp;50</td>
+                    <td class="align_left">EU지역<br>
+                        
+                            <font class="txt_navy">
+                        </td>
+                </tr>
+            
+                	
+                <tr>
+                    <td>5</td>
+                    
+                        <td>인문학공통</td>
+                    
+                    <td>1</td>
+                    <td>J11014201</td>
+                    <td class="align_left">
+                        
+                            <!-- onClick="javascript:go_syllabus('2017','3','A','J11014201')" -->
+                            <div 
+                                    onClick="javascript:lecture_open('2017','3','A','J11014201')"
+                                 >
+                                <font class="txt_navy">유럽통합사<br>
+                                <font class='txt_gray8'>(History of European Integration)
+                            </div>
+                        
+					</td>
+                    <td>
+                            
+                                <a href="javascript:lecture_open('2017','3','A','J11014201')">
+                                <img src="/src08/images/common/ico_file.gif" border="0"></a>
+                            
+                        
+                        </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>박상준
+                        
+                            <br>(Park Sangjun)
+                        </td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>수 3 4  (-)<br>(Wed 3 4  (-))</td>
+                    <td>0&nbsp;/&nbsp;50</td>
+                    <td class="align_left">EU지역<br>
+                        
+                            <font class="txt_navy">
+                        </td>
+                </tr>
+            
+                	
+                <tr>
+                    <td>6</td>
+                    
+                        <td>인문학공통</td>
+                    
+                    <td>1</td>
+                    <td>J11017201</td>
+                    <td class="align_left">
+                        
+                            <!-- onClick="javascript:go_syllabus('2017','3','A','J11017201')" -->
+                            <div 
+                                    onClick="javascript:lecture_open('2017','3','A','J11017201')"
+                                 >
+                                <font class="txt_navy">이슬람사상의이해(2)<br>
+                                <font class='txt_gray8'>(Understanding of Islamic Thought (2))
+                            </div>
+                        
+					</td>
+                    <td>
+                            
+                                <a href="javascript:lecture_open('2017','3','A','J11017201')">
+                                <img src="/src08/images/common/ico_file.gif" border="0"></a>
+                            
+                        
+                        </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>김동환
+                        
+                            <br>(Kim Dong Hwan)
+                        </td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>목 1 2 3  (-)<br>(Thu 1 2 3  (-))</td>
+                    <td>0&nbsp;/&nbsp;50</td>
+                    <td class="align_left">중동.북아프리카지역<br>
+                        
+                            <font class="txt_navy">
+                        </td>
+                </tr>
+            
+                	
+                <tr>
+                    <td>7</td>
+                    
+                        <td>인문학공통</td>
+                    
+                    <td>1</td>
+                    <td>J11021101</td>
+                    <td class="align_left">
+                        
+                            <!-- onClick="javascript:go_syllabus('2017','3','A','J11021101')" -->
+                            <div 
+                                    onClick="javascript:lecture_open('2017','3','A','J11021101')"
+                                 >
+                                <font class="txt_navy">인도.동남아시아문학과예술<br>
+                                <font class='txt_gray8'>(Introduction to Indian & Southeast Asian Literature and Arts)
+                            </div>
+                        
+					</td>
+                    <td>
+                            
+                                <a href="javascript:lecture_open('2017','3','A','J11021101')">
+                                <img src="/src08/images/common/ico_file.gif" border="0"></a>
+                            
+                        
+                        </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>김우조
+                        
+                            <br>(Kim Woo Jo)
+                        </td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>수 5 6  (-)<br>(Wed 5 6  (-))</td>
+                    <td>0&nbsp;/&nbsp;50</td>
+                    <td class="align_left">인도.동남아지역<br>
+                        
+                            <font class="txt_navy">
+                        </td>
+                </tr>
+            
+                	
+                <tr>
+                    <td>8</td>
+                    
+                        <td>인문학공통</td>
+                    
+                    <td>1</td>
+                    <td>J11022101</td>
+                    <td class="align_left">
+                        
+                            <!-- onClick="javascript:go_syllabus('2017','3','A','J11022101')" -->
+                            <div 
+                                    onClick="javascript:lecture_open('2017','3','A','J11022101')"
+                                 >
+                                <font class="txt_navy">인도.동남아시아종교와사상<br>
+                                <font class='txt_gray8'>(Introduction to Indian & Southeast Asian Literature and Arts)
+                            </div>
+                        
+					</td>
+                    <td>
+                            
+                                <a href="javascript:lecture_open('2017','3','A','J11022101')">
+                                <img src="/src08/images/common/ico_file.gif" border="0"></a>
+                            
+                        
+                        </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>서명교
+                        
+                            <br>(Seo, Myengkyo)
+                        </td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>수 3 4  (-)<br>(Wed 3 4  (-))</td>
+                    <td>0&nbsp;/&nbsp;50</td>
+                    <td class="align_left">인도.동남아지역<br>
+                        
+                            <font class="txt_navy">
+                        </td>
+                </tr>
+            
+                	
+                <tr>
+                    <td>9</td>
+                    
+                        <td>인문학공통</td>
+                    
+                    <td>1</td>
+                    <td>J11020101</td>
+                    <td class="align_left">
+                        
+                            <!-- onClick="javascript:go_syllabus('2017','3','A','J11020101')" -->
+                            <div >
+                                <font class="txt_navy">중남미역사와사상(2)<br>
+                                <font class='txt_gray8'>(Latin American History and Philosophy (2))
+                            </div>
+                        
+					</td>
+                    <td>
+                            
+                        
+                        </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>오인혜
+                        
+                            <br>(Inhye Oh)
+                        </td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>화 1 2 3  (-)<br>(Tue 1 2 3  (-))</td>
+                    <td>0&nbsp;/&nbsp;50</td>
+                    <td class="align_left">중남미지역<br>
+                        
+                            <font class="txt_navy">
+                        </td>
+                </tr>
+            
+                	
+                <tr>
+                    <td>10</td>
+                    
+                        <td>인문학공통</td>
+                    
+                    <td>1</td>
+                    <td>J11020102</td>
+                    <td class="align_left">
+                        
+                            <!-- onClick="javascript:go_syllabus('2017','3','A','J11020102')" -->
+                            <div >
+                                <font class="txt_navy">중남미역사와사상(2)<br>
+                                <font class='txt_gray8'>(Latin American History and Philosophy (2))
+                            </div>
+                        
+					</td>
+                    <td>
+                            
+                        
+                        </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>박수경
+                        
+                            <br>(Park, Soo Kyoung)
+                        </td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>수 7 8 9  (-)<br>(Wed 7 8 9  (-))</td>
+                    <td>0&nbsp;/&nbsp;50</td>
+                    <td class="align_left">중남미지역<br>
+                        
+                            <font class="txt_navy">
+                        </td>
+                </tr>
+            
+                	
+                <tr>
+                    <td>11</td>
+                    
+                        <td>인문학공통</td>
+                    
+                    <td>1</td>
+                    <td>J11020103</td>
+                    <td class="align_left">
+                        
+                            <!-- onClick="javascript:go_syllabus('2017','3','A','J11020103')" -->
+                            <div >
+                                <font class="txt_navy">중남미역사와사상(2)<br>
+                                <font class='txt_gray8'>(Latin American History and Philosophy (2))
+                            </div>
+                        
+					</td>
+                    <td>
+                            
+                        
+                        </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>김유경
+                        
+                            <br>(-)
+                        </td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>화 7 8 9  (-)<br>(Tue 7 8 9  (-))</td>
+                    <td>0&nbsp;/&nbsp;50</td>
+                    <td class="align_left">중남미지역<br>
+                        
+                            <font class="txt_navy">
+                        </td>
+                </tr>
+            
+                	
+                <tr>
+                    <td>12</td>
+                    
+                        <td>인문학공통</td>
+                    
+                    <td>1</td>
+                    <td>J11016201</td>
+                    <td class="align_left">
+                        
+                            <!-- onClick="javascript:go_syllabus('2017','3','A','J11016201')" -->
+                            <div 
+                                    onClick="javascript:lecture_open('2017','3','A','J11016201')"
+                                 >
+                                <font class="txt_navy">중동의사회와문화(2)<br>
+                                <font class='txt_gray8'>(Society and Culture in the Middle East (2))
+                            </div>
+                        
+					</td>
+                    <td>
+                            
+                                <a href="javascript:lecture_open('2017','3','A','J11016201')">
+                                <img src="/src08/images/common/ico_file.gif" border="0"></a>
+                            
+                        
+                        </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>신성윤
+                        
+                            <br>(Shin Seoung-Yun)
+                        </td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>목 7 8 9  (-)<br>(Thu 7 8 9  (-))</td>
+                    <td>0&nbsp;/&nbsp;50</td>
+                    <td class="align_left">중동.북아프리카지역<br>
+                        
+                            <font class="txt_navy">
+                        </td>
+                </tr>
+            
+        </tbody>    
+        </table>
+        
+        
+	</div>
+    </form>
+</div>    
+</body>
+</html>
