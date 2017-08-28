@@ -31,4 +31,13 @@ class CourseTimeSpec extends FlatSpec with Matchers {
       CourseTime(FRIDAY, (4 to 6), "사이버관 대강당")
     )
   }
+
+  it should "be able to extract 2017-01 D03389101" in {
+    fromHtmlTag("화 6 (C401) 목 5 6 (C515)<br>(Tue 6 (C401) Thu 5 6 (C515))") shouldEqual
+    Seq(
+      CourseTime(TUESDAY, Seq(6), "C401"),
+      CourseTime(THURSDAY, (5 to 6), "C515")
+    )
+  }
+
 }

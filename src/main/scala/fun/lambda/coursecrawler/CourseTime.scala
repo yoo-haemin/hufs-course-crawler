@@ -46,30 +46,32 @@ object CourseTime {
   implicit def courseTimeFormat = Json.format[CourseTime]
 
 
-  def fromHtmlTag(s: String) = {
+  def fromHtmlTag(s: String): Seq[CourseTime] = {
     val englishRegex = """\(([(?:Mon)|(?:Tue)|(?:Wed)|(?:Thu)|(?:Fri)|(?:Sat)|(?:Sun)].*)\)""".r
-    val str = englishRegex.findAllMatchIn(s).toList.head.group(1)
+    englishRegex.findAllMatchIn(s).toList.headOption.fold(Seq.empty[CourseTime]) { matchGroups =>
+      val str = matchGroups.group(1)
 
-    val dayOfWeek = P("Mon".! | "Tue".! | "Wed".! | "Thu".! | "Fri".! | "Sat".! | "Sun".!).map {
-      DayOfWeekString.fromString
-    }
-    val time = P( CharIn('0' to '9').rep(1).! )
-    val room = P( "(" ~/ CharsWhile(c => c != '(' && c != ')').! ~ ")" )
-    val ws = P(" ")
+      val dayOfWeek = P("Mon".! | "Tue".! | "Wed".! | "Thu".! | "Fri".! | "Sat".! | "Sun".!).map {
+        DayOfWeekString.fromString
+      }
+      val time = P( CharIn('0' to '9').rep(1).! )
+      val room = P( "(" ~/ CharsWhile(c => c != '(' && c != ')').! ~ ")" )
+      val ws = P(" ")
 
-    P( (dayOfWeek ~ ws ~ (time ~ ws).rep ~ ws.rep ~ room.? ).rep ~ End ).map { xs =>
-      ((Seq.empty[CourseTime] -> "") /: xs.reverse) {
-        case ((acc, lastRoom), (dow, timesString, roomOpt)) =>
-          val times = timesString.map(i => Try(i.toInt).toOption).filterNot(_.isEmpty).map(_.get)
-          roomOpt match {
-            case Some(r) => (acc :+ CourseTime(dow, times, r)) -> r
-            case None => (acc :+ CourseTime(dow, times, lastRoom)) -> lastRoom
-          }
-      }._1.reverse
-    }.parse(str) match {
-      case Success(xs, _) => xs
-      case f @ Failure(_, _, _) => throw new Exception(
-        s"CourseTime Parse Error: $str\n$f")
+      P( (dayOfWeek ~ ws ~ (time ~ ws).rep ~ ws.rep ~ room.? ~ ws.rep ).rep ~ End ).map { xs =>
+        ((Seq.empty[CourseTime] -> "") /: xs.reverse) {
+          case ((acc, lastRoom), (dow, timesString, roomOpt)) =>
+            val times = timesString.map(i => Try(i.toInt).toOption).filterNot(_.isEmpty).map(_.get)
+            roomOpt match {
+              case Some(r) => (acc :+ CourseTime(dow, times, r)) -> r
+              case None => (acc :+ CourseTime(dow, times, lastRoom)) -> lastRoom
+            }
+        }._1.reverse
+      }.parse(str) match {
+        case Success(xs, _) => xs
+        case f @ Failure(_, _, _) => throw new Exception(
+          s"CourseTime Parse Error: $str\n$f")
+      }
     }
   }
 }

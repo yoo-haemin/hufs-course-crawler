@@ -9,8 +9,6 @@ import play.api.libs.json._
 
 import com.typesafe.config.ConfigFactory
 
-//import scala.io.Source
-
 object MainCrawler extends App {
   //Base Data
   val mainUrl = """http://webs.hufs.ac.kr:8989/src08/jsp/lecture/LECTURE2020L.jsp"""
@@ -18,9 +16,9 @@ object MainCrawler extends App {
   val config = ConfigFactory.load()
 
   //Year and Semester Configurations
-  val startYear = config.getInt("start.year")
+  val startYear: Year = config.getInt("start.year")
   val startSemester = config.getInt("start.semester")
-  val endYear = config.getInt("end.year")
+  val endYear: Year = config.getInt("end.year")
   val endSemester = config.getInt("end.semester")
 
   //Hardcoded POST parameter keys
@@ -38,16 +36,13 @@ object MainCrawler extends App {
     if (yr > startYear && yr < endYear) ||
     (yr == startYear && sem >= startSemester) ||
     (yr == endYear && sem <= endSemester)
-  } yield Map(yearParam -> yr.toString, semesterParam -> sem.toString)
-
-  println(semesterParams)
-
+  } yield Map(yearParam -> yr, semesterParam -> sem)
 
   //Extract parameters for individual major/liberal-arts from semester pages
-  def paramTemplate(doc: Document)(paramName: String): List[Param] =
+  def paramTemplate(doc: Document)(paramName: String): List[Department] =
     (doc >> elementList(s"select[name=$paramName]")) flatMap { wholeElem =>
       (wholeElem >> elementList("option"))
-        .map { elem => Param(
+        .map { elem => Department(
                 elem >> attr("value")("option"),
                 (elem >> text("option")).filterNot(_ == '\u00A0'))
         }
@@ -56,33 +51,55 @@ object MainCrawler extends App {
   //Create Full parameter list from given years and semesters
   def semesterBody(getSemesterDocument: Map[String, String] => Document) = for {
     yearSemesterParam <- semesterParams
-    semesterDoc = getSemesterDocument(yearSemesterParam)
+    semesterDoc = getSemesterDocument(yearSemesterParam.map { case (param, value) => param -> value.toString })
+
+    //Parameters with everything
     fullParam = paramNameList.map(paramName => paramName -> paramTemplate(semesterDoc)(paramName))
 
     major = fullParam.find(_._1 == majorParam).get._2
     la = fullParam.find(_._1 == liberalArtsParam).get._2
   } yield (yearSemesterParam, Map(Major -> major, LiberalArts -> la))
 
-  for {
+  val departments = for {
     (yearSemester, deptMap) <- semesterBody(browser.post(mainUrl, _))
-    (deptType, params) <- deptMap
-    param <- params
-  } {
-    import java.io.{ PrintWriter, File }
+    year = yearSemester(yearParam)
+    semester = Semester.fromInt(yearSemester(semesterParam))
+    (deptType, departments) <- deptMap
+    department <- departments
+  } yield {
+    (year, semester, department,
+     DepartmentCrawler.toCourseList(
+       year = year,
+       semester = semester,
+       deptType = deptType,
+       deptParam = department
+     ))
+  }
 
-    val yr = yearSemester(yearParam).toInt
-    val sem = Semester.fromInt(yearSemester(semesterParam).toInt)
+  import java.io.{ PrintWriter, File }
 
-    val pw = new PrintWriter(new File(s"assets/$yr-${Semester.toInt(sem)}-${param.value}.json" ))
-    pw.write(
-      Json.prettyPrint(
-        DepartmentCrawler.toJson(
-          year      = yr,
-          semester  = sem,
-          deptType  = deptType,
-          deptParam = param)
+  if (config.getBoolean("perSemester")) {
+    departments
+      .groupBy { case (yr, sem, _, _) => yr -> sem }
+      .foreach { case ((yr, sem), depts) =>
+        val pw = new PrintWriter(new File(s"json/$yr-${Semester.toInt(sem)}.json" ))
+        pw.write(
+          Json.prettyPrint(
+            Json.toJson(
+              (Seq.empty[Course] /: depts) { case (acc, (_, _, department, courseList)) => acc ++ courseList }
+            )
+          )
+        )
+        pw.close()
+      }
+
+  } else {
+    departments.foreach { case (yr, sem, department, courseList) =>
+      val pw = new PrintWriter(new File(s"json/$yr-${Semester.toInt(sem)}-${department.value}.json" ))
+      pw.write(
+        Json.prettyPrint(Json.toJson(courseList))
       )
-    )
-    pw.close
+      pw.close()
+    }
   }
 }

@@ -6,10 +6,9 @@ lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
       organization := "fun.lambda",
-      scalaVersion := "2.12.2",
-      version      := "0.1.0-SNAPSHOT"
+      scalaVersion := "2.12.3",
+      version      := "0.1.0"
     )),
-    name := "Hello",
     libraryDependencies ++=
       scalaTest % Test ::
       "org.scalaj" %% "scalaj-http" % "2.3.0" ::
@@ -20,5 +19,5 @@ lazy val root = (project in file(".")).
       Nil
   )
 
-publishTo := Some("Artifactory Realm" at "https://repo.lambda.fun/artifactory/sbt-dev-local/")
+publishTo := Some("Lambda Fun Repo" at "https://repo.lambda.fun/artifactory/sbt-dev-local/")
 credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
