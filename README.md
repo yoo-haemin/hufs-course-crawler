@@ -1,1 +1,0 @@
-# hufs-course-viewer-server
