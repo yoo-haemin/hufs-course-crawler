@@ -27,6 +27,10 @@ case class Course(
 )
 
 object Course {
+  import com.typesafe.scalalogging.Logger
+
+  val logger = Logger(classOf[Course])
+
   import play.api.libs.json._
 
   implicit def courseReads = Json.reads[Course]
@@ -51,7 +55,9 @@ object Course {
     val applyNo = extractNo("""(\d+) \/""".r)
     val maxNo = extractNo("""\/ (\d+)""".r)
 
-    val newStuff = Course(
+    logger.debug(text.toString)
+
+    val result = Course(
       openYear = openYear,
       openSemester = openSemester,
       openDept = openDept,
@@ -62,8 +68,8 @@ object Course {
       subjectName = text(4),
       professorNameMain = profNameMain,
       professorNameAdditional = profNameAdditional,
-      creditHour = text(11).toInt,
-      classHour = text(12).toInt,
+      creditHour = text(11).trim.takeWhile(_.isDigit).toInt,
+      classHour = text(12).trim.takeWhile(_.isDigit).toInt,
       time = CourseTime.fromHtmlTag(text(13)),
       applyNo = applyNo,
       maxNo = maxNo,
@@ -75,6 +81,6 @@ object Course {
       teamTeaching = strToBool(text(9))
     )
 
-    newStuff
+    result
   }
 }

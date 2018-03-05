@@ -34,24 +34,28 @@ object MainCrawler extends App {
     yr <- startYear to endYear
     sem <- (1 to 4)
     if (yr > startYear && yr < endYear) ||
-    (yr == startYear && sem >= startSemester) ||
-    (yr == endYear && sem <= endSemester)
+       (yr == startYear && sem >= startSemester) ||
+       (yr == endYear && sem <= endSemester)
   } yield Map(yearParam -> yr, semesterParam -> sem)
 
   //Extract parameters for individual major/liberal-arts from semester pages
   def paramTemplate(doc: Document)(paramName: String): List[Department] =
     (doc >> elementList(s"select[name=$paramName]")) flatMap { wholeElem =>
       (wholeElem >> elementList("option"))
-        .map { elem => Department(
-                elem >> attr("value")("option"),
-                (elem >> text("option")).filterNot(_ == '\u00A0'))
+        .map { elem =>
+          Department(
+            elem >> attr("value")("option"),
+            (elem >> text("option")).filterNot(_ == '\u00A0') //Remove nbsp (\u00A0)
+          )
         }
     }
 
   //Create Full parameter list from given years and semesters
   def semesterBody(getSemesterDocument: Map[String, String] => Document) = for {
     yearSemesterParam <- semesterParams
-    semesterDoc = getSemesterDocument(yearSemesterParam.map { case (param, value) => param -> value.toString })
+    semesterDoc = getSemesterDocument(
+      yearSemesterParam.map { case (param, value) => param -> value.toString }
+    )
 
     //Parameters with everything
     fullParam = paramNameList.map(paramName => paramName -> paramTemplate(semesterDoc)(paramName))
@@ -77,6 +81,11 @@ object MainCrawler extends App {
   }
 
   import java.io.{ PrintWriter, File }
+
+  if (new File(s"json").isDirectory()) {
+
+  }
+
 
   if (config.getBoolean("perSemester")) {
     departments
