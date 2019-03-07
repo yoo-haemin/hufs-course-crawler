@@ -9,7 +9,7 @@ import play.api.libs.json._
 
 import com.typesafe.config.ConfigFactory
 
-object MainCrawler extends App {
+class MainCrawler extends App {
   //Base Data
   val mainUrl = """https://webs.hufs.ac.kr/src08/jsp/lecture/LECTURE2020L.jsp"""
   val browser = JsoupBrowser()
