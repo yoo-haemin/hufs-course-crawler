@@ -11,7 +11,7 @@ import com.typesafe.config.ConfigFactory
 
 object MainCrawler extends App {
   //Base Data
-  val mainUrl = """http://webs.hufs.ac.kr:8989/src08/jsp/lecture/LECTURE2020L.jsp"""
+  val mainUrl = """https://webs.hufs.ac.kr/src08/jsp/lecture/LECTURE2020L.jsp"""
   val browser = JsoupBrowser()
   val config = ConfigFactory.load()
 
@@ -32,7 +32,7 @@ object MainCrawler extends App {
   // Years and Semesters from config file
   val semesterParams = for {
     yr <- startYear to endYear
-    sem <- (1 to 4)
+    sem <- startSemester to endSemester
     if (yr > startYear && yr < endYear) ||
        (yr == startYear && sem >= startSemester) ||
        (yr == endYear && sem <= endSemester)

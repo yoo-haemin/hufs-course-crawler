@@ -9,6 +9,8 @@ inThisBuild(List(
 
 name := "hufs-campus-utils"
 
+cancelable in Global := true
+
 lazy val root = project.in(file(".")).aggregate(lib)
 
 lazy val lib = (project in file("lib"))
@@ -24,3 +26,5 @@ lazy val lib = (project in file("lib"))
       "ch.qos.logback"             %  "logback-classic" % "1.2.3" ::
       "com.typesafe.scala-logging" %% "scala-logging"   % "3.8.0" :: Nil
   )
+
+
