@@ -1,6 +1,6 @@
 package ci.jj.coursecrawler
 
-import java.time.DayOfWeek
+import java.time.{ DayOfWeek, Year }
 
 package domain {
 
@@ -29,6 +29,8 @@ package domain {
 
   final case class CourseTime(dow: DayOfWeek, time: List[Int], room: String)
 
+  final case class YearSemester(year: Year, semester: Semester)
+
   sealed abstract class Semester(val value: Int)
   object Semester {
     case object FirstSemester extends Semester(1)
@@ -36,5 +38,13 @@ package domain {
     case object SecondSemester extends Semester(3)
     case object WinterSemester extends Semester(4)
   }
+
+  sealed abstract class DepartmentType
+  object DepartmentType {
+    case object Major extends DepartmentType
+    case object LiberalArts extends DepartmentType
+  }
+
+  final case class Department(tpe: DepartmentType, name: String, repr: String)
 
 }

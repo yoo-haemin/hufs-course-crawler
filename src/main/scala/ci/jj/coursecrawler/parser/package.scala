@@ -1,13 +1,18 @@
 package ci.jj.coursecrawler
 
+import ci.jj.coursecrawler.domain._
+import ci.jj.coursecrawler.http.{ DepartmentDocument, DepartmentListDocument }
+
+package object parser {
+
+  type CourseTimeFragment
+  type CourseFragment
+
+}
+
 package parser {
 
-  import ci.jj.coursecrawler.domain.CourseTime
-
-
   trait CourseTimeParser[F[_]] {
-
-    type CourseTimeFragment
 
     def parse(courseTimeFragment: CourseTimeFragment): F[CourseTime]
 
@@ -15,9 +20,15 @@ package parser {
 
   trait CourseParser[F[_]] {
 
+    def parse(courseFragment: CourseFragment): F[Course]
+
   }
 
-  trait DepartmentParser[F[_]] {
+  trait DocumentParser[F[_]] {
+
+    def departmentList(departmentListDocument: DepartmentListDocument): F[List[Department]]
+
+    def department(department: DepartmentDocument): F[List[Course]]
 
   }
 
